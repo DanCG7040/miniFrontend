@@ -4,7 +4,6 @@
   "outputDirectory": "dist/test-laRueda",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
-  "functions": {},
   "env": {
     "NODE_OPTIONS": "--openssl-legacy-provider"
   },
