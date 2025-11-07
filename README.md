@@ -146,3 +146,5 @@ La aplicación estará disponible en `http://localhost:4200`
   - Body: `{ "rows": [{ "nombre": "string", "celular": "string", "placa": "string" }] }`
   - Headers: `Authorization: Bearer <token>`, `X-CANDIDATE-ID: CAND_0015`, `Content-Type: application/json`
 
+Se ha actualizado con el ultimo push para poder implementar la app en vercel
+con el arhcivo .npmrc para usar legacy-peer-deps
