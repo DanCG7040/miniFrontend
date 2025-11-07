@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="form-card">
+    <div class="header">
+      <h1>Carga Masiva de Contactos</h1>
+      <button class="btn btn-secondary" (click)="goBack()">← Volver</button>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Formato requerido:</strong> JSON con un array "rows" que contenga los contactos.</p>
+      <p>Cada contacto debe tener: nombre (requerido), celular (requerido), placa (opcional).</p>
+      <button class="btn-link" (click)="loadExample()">Ver ejemplo</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="bulk-form">
+      <div class="form-group">
+        <label for="jsonText">JSON de Contactos</label>
+        <textarea 
+          id="jsonText" 
+          [(ngModel)]="jsonText" 
+          name="jsonText"
+          class="json-textarea"
+          rows="15"
+          placeholder='{"rows": [{"nombre": "...", "celular": "...", "placa": "..."}]}'>
+        </textarea>
+      </div>
+
+      <div class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="error-message server-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="goBack()">
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="!jsonText.trim() || isLoading">
+          <span *ngIf="!isLoading">Cargar Contactos</span>
+          <span *ngIf="isLoading">Cargando...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

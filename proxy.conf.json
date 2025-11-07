@@ -1,0 +1,13 @@
+{
+  "/api": {
+    "target": "https://api.larueda.com.co",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    }
+  }
+}
+

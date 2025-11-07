@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="form-card">
+    <div class="header">
+      <h1>Crear Contacto</h1>
+      <button class="btn btn-secondary" (click)="goBack()">← Volver</button>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+      <div class="form-group">
+        <label for="nombre">Nombre *</label>
+        <input 
+          type="text" 
+          id="nombre" 
+          formControlName="nombre" 
+          class="form-control"
+          [class.error]="contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched"
+          placeholder="Ingresa el nombre">
+        <span class="error-message" *ngIf="contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched">
+          Nombre requerido (mínimo 2 caracteres)
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="celular">Celular *</label>
+        <input 
+          type="text" 
+          id="celular" 
+          formControlName="celular" 
+          class="form-control"
+          [class.error]="contactForm.get('celular')?.invalid && contactForm.get('celular')?.touched"
+          placeholder="Ingresa el celular (10 dígitos)">
+        <span class="error-message" *ngIf="contactForm.get('celular')?.invalid && contactForm.get('celular')?.touched">
+          Celular requerido (10 dígitos numéricos)
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="placa">Placa</label>
+        <input 
+          type="text" 
+          id="placa" 
+          formControlName="placa" 
+          class="form-control"
+          placeholder="Ingresa la placa (opcional)">
+      </div>
+
+      <div class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="error-message server-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="goBack()">
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="contactForm.invalid || isLoading">
+          <span *ngIf="!isLoading">Guardar</span>
+          <span *ngIf="isLoading">Guardando...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

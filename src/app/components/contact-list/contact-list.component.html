@@ -1,0 +1,104 @@
+<div class="container">
+  <header class="header">
+    <div class="header-content">
+      <div>
+        <div class="logo-title">
+          <img src="assets/logo.svg" alt="La Rueda Logo" />
+          <h1>Contactos</h1>
+        </div>
+        <p class="user-info" *ngIf="user">
+          <span>{{ user.email }}</span> | <span>{{ user.candidate_code }}</span>
+        </p>
+      </div>
+      <button class="btn btn-secondary" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        (keyup.enter)="onSearch()"
+        placeholder="Buscar por nombre, celular o placa..."
+        class="search-input">
+      <button class="btn btn-search" (click)="onSearch()">Buscar</button>
+    </div>
+    <div class="action-buttons">
+      <button class="btn btn-primary" (click)="goToCreate()">
+        <span>+</span> Crear Contacto
+      </button>
+      <button class="btn btn-primary" (click)="goToBulk()">
+        <span>📋</span> Carga Masiva
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container" *ngIf="!isLoading">
+    <table class="contacts-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Celular</th>
+          <th>Placa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{ contact.nombre }}</td>
+          <td>{{ contact.celular }}</td>
+          <td>{{ contact.placa || '-' }}</td>
+        </tr>
+        <tr *ngIf="contacts.length === 0">
+          <td colspan="3" class="no-data">No se encontraron contactos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Cargando contactos...</p>
+  </div>
+
+  <div class="pagination" *ngIf="!isLoading && contacts.length > 0">
+    <button 
+      class="btn-page" 
+      [disabled]="currentPage === 1"
+      (click)="onPageChange(currentPage - 1)">
+      ← Anterior
+    </button>
+    <div class="page-numbers">
+      <button 
+        *ngIf="pages[0] > 1"
+        class="btn-page"
+        (click)="onPageChange(1)">
+        1
+      </button>
+      <span *ngIf="pages[0] > 2" class="page-ellipsis">...</span>
+      <button 
+        *ngFor="let page of pages" 
+        class="btn-page"
+        [class.active]="page === currentPage"
+        (click)="onPageChange(page)">
+        {{ page }}
+      </button>
+      <span *ngIf="pages[pages.length - 1] < lastPage - 1" class="page-ellipsis">...</span>
+      <button 
+        *ngIf="pages[pages.length - 1] < lastPage"
+        class="btn-page"
+        (click)="onPageChange(lastPage)">
+        {{ lastPage }}
+      </button>
+    </div>
+    <button 
+      class="btn-page" 
+      [disabled]="currentPage === lastPage"
+      (click)="onPageChange(currentPage + 1)">
+      Siguiente →
+    </button>
+    <span class="page-info">
+      Página {{ currentPage }} de {{ lastPage }} ({{ total }} contactos)
+    </span>
+  </div>
+</div>
