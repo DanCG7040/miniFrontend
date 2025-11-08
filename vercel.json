@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "NODE_OPTIONS=--openssl-legacy-provider npm run build -- --configuration=production",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist/test-laRueda",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
