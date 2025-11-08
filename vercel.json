@@ -1,9 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "npm run build -- --configuration=production",
+  "buildCommand": "NODE_OPTIONS=--openssl-legacy-provider npm run build -- --configuration=production",
   "outputDirectory": "dist/test-laRueda",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
+  "env": {
+    "NODE_OPTIONS": "--openssl-legacy-provider"
+  },
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--openssl-legacy-provider"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

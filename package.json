@@ -2,7 +2,7 @@
   "name": "test-la-rueda",
   "version": "0.0.0",
   "engines": {
-    "node": "18.x",
+    "node": "22.x",
     "npm": ">=7.0.0"
   },
   "scripts": {
