@@ -2,7 +2,7 @@
   "name": "test-la-rueda",
   "version": "0.0.0",
   "engines": {
-    "node": "22.x",
+    "node": "16.x",
     "npm": ">=7.0.0"
   },
   "scripts": {
@@ -11,7 +11,7 @@
     "start:legacy": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve",
     "build": "ng build",
     "build:production": "ng build --configuration=production",
-    "build:vercel": "NODE_OPTIONS=--openssl-legacy-provider ng build --configuration=production",
+    "build:vercel": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build --configuration=production",
     "build:legacy": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build",
     "test": "ng test",
     "test:legacy": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng test",
